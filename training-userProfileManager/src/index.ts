@@ -7,7 +7,7 @@ interface User {
     role: "admin" | "user";
 }
 
-const users: User[] = [
+let users: User[] = [
     {
         id: 1,
         username: "raam",
@@ -33,16 +33,16 @@ const users: User[] = [
     }
 ];
 
-const getActiveUsers = (): User[] => {
+const getActiveUsers = (users : User[]): User[] => {
     return users.filter((user) => user.isActive);
 }
 
-const findUserByUsername = (username : string): User | undefined => {
+const findUserByUsername = (username : string, users : User[]): User | undefined => {
     return users.find(user => user.username === username)
 }
 
-const printUserInfo = (username: string):void => {
-    const user: User | undefined = findUserByUsername(username)
+const printUserInfo = (username: string, users: User[]):void => {
+    const user: User | undefined = findUserByUsername(username, users);
 
     if(user === undefined) {
         console.log("No such user found")
@@ -52,23 +52,31 @@ const printUserInfo = (username: string):void => {
             `Username: ${user.username}`,
             `Email: ${user.email}`,
             `Age: ${user.age ?? "Not Specified"}`,
-            `Active: ${user.role}`
+            `Active: ${user.isActive ? "Active" : "Not Active"}`
         ].join("\n"));
 
     }
 }
 
-const deactivateUser = (username: string): void => {
-    const user: User | undefined = findUserByUsername(username)
-    if(user === undefined) {
-        console.log("No such user found")
-    } else {
-        user.isActive = false;
-        console.log(`User ${username} deactivated!`)
+const deactivateUser = (username : string, users: User[]): User[] => {
+    let found = false;
+
+    const updatedUsers = users.map(user => {
+        if(user.username === username) {
+            found = true;
+            return {...user, isActive: false};
+        }
+        return user;
+    })
+
+    if(!found) {
+        console.log("No such user found");
+        return users;
     }
+
+    return updatedUsers;
 }
 
-console.log(getActiveUsers());
-printUserInfo("raam")
-printUserInfo("some dude")
-deactivateUser("alex")
+console.log(getActiveUsers(users));
+users = deactivateUser("raam", users)
+printUserInfo("raam", users)
