@@ -1,11 +1,7 @@
-interface Property {
-    toUpperCase(): string
+function getProperty<T, K extends keyof T>(obj: T, key: K) {
+    return obj[key];
 }
 
-const property = <T extends Property>(val: T): T => {
-    console.log(val);
-    return val
-}
+let x = { a: 1, b: 2, c: 3 };
 
-property("hello");
-
+console.log(getProperty(x, "a"))
