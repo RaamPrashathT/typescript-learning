@@ -34,9 +34,11 @@ console.log(apiResponse)
 
 interface Transformer<T, U> {
     (input: T): U;
+    description: string
 }
 
 const transformer: Transformer<string, number> = (str) => {return str.length}
+transformer.description = "This is the transformer";
 
 console.log(transformer("hello world"))
 
@@ -48,3 +50,6 @@ interface DefaultGenericInterface <T = string>{
 
 const defaultGenericInterface: DefaultGenericInterface = { content: "Hello world" };
 const defaultGenericInterface1: DefaultGenericInterface<number> = { content: 5000 };
+
+console.log(defaultGenericInterface);
+console.log(defaultGenericInterface1);
