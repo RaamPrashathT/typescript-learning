@@ -1,12 +1,12 @@
 interface Messenger {
     (message: string): void;
-    sender: string;
+    sender: number;
 }
 
 const ping: Messenger = (msg) => {
     console.log(`Sending: ${msg}`)
 }
 
-ping.sender = "Raam";
+ping.sender = 1;
 
 ping("hello world");
