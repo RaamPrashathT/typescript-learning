@@ -25,3 +25,5 @@ greet.prototype.move = function() {
 }
 
 greet.prototype.move();
+
+

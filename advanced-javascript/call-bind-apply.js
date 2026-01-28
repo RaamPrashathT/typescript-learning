@@ -25,3 +25,18 @@ const person2 = {
 }
 
 person1.myFunc.call(person2, "hello")
+
+//bind
+
+const user = {
+    name: "Alice",
+    greet: function() {
+        console.log(`Hi im ${this.name}`);
+    }
+};
+
+const unboundGreet = user.greet;
+unboundGreet();
+
+const boundGreet = user.greet.bind(user);
+boundGreet();
