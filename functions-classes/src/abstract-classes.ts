@@ -1,5 +1,5 @@
 abstract class Shape {
-    constructor(public name: string){}
+    protected constructor(public name: string){}
 
     display(): void {
         console.log(this.name);
@@ -29,11 +29,13 @@ class Square extends Shape {
 }
 
 const myCircle = new Circle(5)
+myCircle.display();
 console.log("Shape name: ", myCircle.name)
 console.log("Shape radius: ", myCircle.radius)
 console.log("Shape area: ", myCircle.getArea())
 
 const mySquare = new Square(5)
+mySquare.display();
 console.log("Shape name: ", mySquare.name)
 console.log("Shape side: ", mySquare.side)
 console.log("Shape area: ", mySquare.getArea())
