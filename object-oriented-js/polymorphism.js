@@ -25,10 +25,10 @@ shapes.forEach(shape => shape.printShape())
 
 class X {
     add(x, y = undefined) {
-        if(typeof y !== "undefined") {
-            console.log(x + y);
-        } else {
+        if (y === undefined) {
             console.log(x);
+        } else {
+            console.log(x + y);
         }
     }
 }
