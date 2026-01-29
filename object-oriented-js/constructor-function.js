@@ -8,4 +8,3 @@ function User (name, age) {
 
 const user = new User("Raam", 21);
 user.introduction();
-

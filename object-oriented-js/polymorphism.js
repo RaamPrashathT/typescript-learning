@@ -1,4 +1,4 @@
-// Method Overloading
+// Method Overriding
 
 class Shape {
     printShape () {
@@ -12,14 +12,15 @@ class Circle extends Shape {
     }
 }
 
-class Square extends Shape {
-    printShape () {
-        console.log("This is a Square");
+class Unknown extends Shape {
+    printShape (shape) {
+        console.log("This is a ", shape);
     }
 }
 
-const shapes = [new Circle(), new Square()];
-shapes.forEach(shape => shape.printShape())
+const unknown = new Unknown()
+unknown.printShape("rectangle")
+
 
 // Method Overloading(not native)
 
